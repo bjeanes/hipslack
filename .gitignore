@@ -1,11 +1,11 @@
 pom.xml
 *jar
 /classes/
+/.lein-repl-history
 /.lein-deps-sum
 /.lein-failures
 /.lein-env
 /checkouts
 /.env
 /target
-.nrepl*
-.lein*
+/.nrepl*

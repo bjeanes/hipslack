@@ -13,11 +13,8 @@
                  [com.stuartsierra/component "0.2.2"]
                  [com.cemerick/drawbridge "0.0.6"]]
   :min-lein-version "2.0.0"
-  :plugins [[environ/environ.lein "0.2.1"]]
-  :hooks [environ.leiningen.hooks]
   :uberjar-name "hipslack-standalone.jar"
-  :profiles {:production {:env {:production true}}
-             :dev {:source-paths ["dev"]
+  :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[org.clojure/tools.namespace "0.2.4"]
                                   [ring-mock  "0.1.5"]]}
              :uberjar {:aot :all}})

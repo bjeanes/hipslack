@@ -11,6 +11,7 @@
             [clojure.test :as test]
             [clojure.tools.namespace.repl :refer (refresh refresh-all)]
             [com.stuartsierra.component :as component]
+            [environ.core :refer [env]]
             [hipslack :as app]))
 
 (def system nil)
