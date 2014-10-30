@@ -34,9 +34,6 @@
        (handler muc message)
        (catch Exception e (println e))))))
 
-(defn handler [{:keys [body from]}]
-  "response...")
-
 (defn connect
   [username password]
   (let [conn (XMPPConnection. (ConnectionConfiguration.
@@ -50,11 +47,6 @@
     (.sendPacket conn (Presence. Presence$Type/available))
     conn))
 
-(defn join-all [conn handler]
-  (doseq [room (mapcat #(MultiUserChat/getHostedRooms conn %)
-                       (MultiUserChat/getServiceNames conn))]
-    (join conn (.getJid room) handler)))
-
 (defn join
   [conn room handler]
   (let [muc (MultiUserChat. conn room)]
@@ -63,3 +55,9 @@
       muc
       (packet-listener muc (with-message-map handler)))
     muc))
+
+(defn join-all [conn handler]
+  (doseq [room (mapcat #(MultiUserChat/getHostedRooms conn %)
+                       (MultiUserChat/getServiceNames conn))]
+    (join conn (.getJid room) handler)))
+
