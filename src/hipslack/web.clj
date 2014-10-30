@@ -1,12 +1,12 @@
 (ns hipslack.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [com.stuartsierra.component :as component]
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
-            [ring.adapter.jetty :as jetty]
             [ring.middleware.basic-authentication :as basic]
             [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]))
@@ -20,7 +20,7 @@
       (session/wrap-session)
       (basic/wrap-basic-authentication authenticated?)))
 
-(defroutes app
+(defroutes routes
   (ANY "/repl" {:as req}
        (drawbridge req))
   (GET "/" []
@@ -46,11 +46,3 @@
            wrap-error-page
            trace/wrap-stacktrace))
         (site {:session {:store store}}))))
-
-(defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))]
-    (jetty/run-jetty (wrap-app #'app) {:port port :join? false})))
-
-;; For interactive development:
-;; (.stop server)
-;; (def server (-main))

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 UBERJAR="target/hipslack-standalone.jar"
-NAMESPACE="hipslack.web"
+NAMESPACE="hipslack"
 
 if [ -f $UBERJAR ]; then
   LAUNCHER="java $JVM_OPTS -cp $UBERJAR clojure.main"
