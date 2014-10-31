@@ -11,6 +11,7 @@
                  [jivesoftware/smack "3.1.0"]
                  [jivesoftware/smackx "3.1.0"]
                  [com.stuartsierra/component "0.2.2"]
+                 [com.cemerick/bandalore "0.0.6"]
                  [com.cemerick/drawbridge "0.0.6"]]
   :min-lein-version "2.0.0"
   :uberjar-name "hipslack-standalone.jar"
